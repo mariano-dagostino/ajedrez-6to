@@ -3,19 +3,19 @@
 require ('PiezaAjedrezInterface.php');
 
 class Alfil implements PiezaDeAjedrez {
-	protected $columna;
-	protected $fila;
-	protected $color;
+	public $columna;
+	public $fila;
+	public $color;
 
 	public function __construct(string $celda, $color){
-		$this->columna = (int) $celda[0] - 64;
-		$this->fila = (int) $celda[1];
+		$this->columna = ord($celda[0]);
+		$this->fila = $celda[1];
 		$this->color = $color;
-		echo "$columna $fila $color";
 	}
 
 	public function movimientosPosibles(){
-
+		$this->columna--;
+		return $this->columna;
   	}
 
 	public function posicionarEn(string $celda){
@@ -24,3 +24,4 @@ class Alfil implements PiezaDeAjedrez {
 }
 
 $alfil = new Alfil('H2', 1);
+print_r($alfil->movimientosPosibles());
