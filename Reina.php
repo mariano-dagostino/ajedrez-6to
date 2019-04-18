@@ -90,7 +90,7 @@ class Reina implements PiezaDeAjedrez{
 				$auxx--;
 				$auxy++;
 			}
-			echo "\n";
+			echo "\n\n";
 		
 		
 		
@@ -100,8 +100,8 @@ class Reina implements PiezaDeAjedrez{
 
 
 	function posicionarEn(string $p_celda){
-		$this->$celday = $p_celda[1];
-		$this->$celdax = ord($p_celda[0]) - 64;	
+		$this->celday = $p_celda[1];
+		$this->celdax = ord($p_celda[0]) - 64;	
 	}
 
 
@@ -110,5 +110,10 @@ class Reina implements PiezaDeAjedrez{
 const BLANCO = 200;
 
 $reina = new Reina("D3",BLANCO);
+
+$reina->movimientosPosibles();
+
+$reina->posicionarEn("H1");
+
 $reina->movimientosPosibles();
 
