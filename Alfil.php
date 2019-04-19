@@ -1,14 +1,14 @@
 <?php
-/**
-        18 de Abril de 2019
-        Iker M. Canut
 
-        Ejemplo para probar el codigo:
-                '''
-                $alfil = new Alfil('E4', 1);
-                print_r($alfil->movimientosPosibles());
-                '''
-*/
+//      18 de Abril de 2019
+//      Iker M. Canut
+
+//      Ejemplo para probar el codigo:
+//              '''
+//              $alfil = new Alfil('E4', 1);
+//              print_r($alfil->movimientosPosibles());
+//              '''
+
 
 require ('PiezaAjedrezInterface.php');
 
