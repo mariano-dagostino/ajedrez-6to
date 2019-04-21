@@ -37,8 +37,11 @@ class Rey implements PiezaDeAjedrez {
 		
 		return $movimientos; //Devuelve una lista de celdas posibles
 	}
-	public function posicionarEn(string $celda);{
-		$this->fila = $celda[0];
-		$this->columna = $celda[1];
+	
+	 public function posicionarEn(string $celda)
+	 {
+                $this->columna = ord($celda[0]);
+		$this->fila = $celda[1];
 	}
+
 }
