@@ -7,7 +7,7 @@ class Celda {
 	private $columna;
 	
 	function __construct(string $celda){
-		setCelda(celda);
+		$this->setCelda($celda);
 	}
 
 	function setCelda(string $celda){
@@ -16,11 +16,11 @@ class Celda {
 	}
 
 	public function getFila(){
-		return fila;
+		return $this->fila;
 	}
 
 	public function getColumna(){
-		return columna;
+		return $this->columna;
 	}
 }
 
@@ -44,10 +44,28 @@ class Torre implements PiezaDeAjedrez{
 	public function movimientosPosibles(){
 		$posibilidades = [];		
 
+        $cont = 0;
 		for($i = 0; $i < 8; $i++){
-					
+				
+            $posibilidades[$cont] =  ($this->posicion.getFila()) . $i;
+
+            $cont++;
+            		
 		}
+        
+        for($p = 0, $columna = "A"; $p < 8; $p++, $columna++){
+				
+                $posibilidades[$cont] =  $i . ($this->posicion.getColumna());
+                
+                $cont++;
+        }	
+        
+        return $posibilidades;
 	}
 }
+
+$torre = new Torre("A0",0);
+
+echo '<pre>'; print_r($torre->movimientosPosibles()); echo '</pre>';
 
 
