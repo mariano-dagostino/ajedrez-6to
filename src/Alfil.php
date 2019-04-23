@@ -1,16 +1,6 @@
 <?php
 
-//      18 de Abril de 2019
-//      Iker M. Canut
-//
-//      Ejemplo para probar el codigo:
-//              '''
-//              $alfil = new Alfil('E4', 1);
-//              print_r($alfil->movimientosPosibles());
-//              '''
-
-
-require ('PiezaAjedrezInterface.php');
+namespace Ajedrez;
 
 class Alfil implements PiezaDeAjedrez {
 	protected $columna;
@@ -38,7 +28,7 @@ class Alfil implements PiezaDeAjedrez {
 		$this->fila = $celda[1];
 	}
 
-        protected function listaMovimientosEnDireccion(int $modFila, int $modColumna){             
+        protected function listaMovimientosEnDireccion(int $modFila, int $modColumna){
                 $movimientos = array();
                 $auxColumna = $this->columna;
                 $auxFila = $this->fila;
