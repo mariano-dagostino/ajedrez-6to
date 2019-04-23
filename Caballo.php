@@ -12,9 +12,9 @@ class Caballo implements PiezaDeAjedrez {
       $movColumna = $this->columna + $movimientosColumnas[$i];
       $movFila    = $this->fila    + $movimientosFilas[$i];
       
-      if($movColumna >= 'A' && $movColumna <= 'H'){
+      if($movColumna >= ord("A") && $movColumna <= ord("H")){
         if($movFila >= 1 && $movFila <= 8){
-          $movimientosPosibles[] = $movColumna . (string)$movFila;
+          $movimientosPosibles[] = chr($movColumna) . (string)$movFila;
       } }
     }
     
@@ -22,12 +22,12 @@ class Caballo implements PiezaDeAjedrez {
   }
   
   public function posicionarEn(string $celda) {
-    $this->columna = $celda[0];
-    $this->fila    = (int)$celda[1];
+    $this->__construct($celda);
   }
   
-  function __construct($celda, $color) {
-    $this->columna = $celda[0];
+  function __construct($celda) {
+    #columna va a tomar un valor entre 65(A) y 90(Z)
+    $this->columna = ord(strtoupper($celda[0]));
     $this->fila    = (int)$celda[1];
   }
 }
