@@ -19,7 +19,7 @@ class Reina implements PiezaDeAjedrez{
 	public $celdax;
 	public $celday;
 
-	function __construct(string $p_celda, int $p_color){
+	function __construct(string $p_celda, string $p_color){
 		$this->color = $p_color;
 		$this->celday = $p_celda[1];
 		$this->celdax = ord($p_celda[0]) - 64;
@@ -28,71 +28,59 @@ class Reina implements PiezaDeAjedrez{
 	function imprimir_celda(int $x, int $y){
 		echo (chr($x+ 64) ) . $y;
 	}
+	
 
 	function movimientosPosibles(){
-		echo "La Reina se encuentra en : ";
-		$this->imprimir_celda( $this->celdax , $this->celday );
-		
-		echo "\nLos movimientos posibles son: \n";
 
-			echo "\nHorizontales: \n";
-			for($i = 1; $i <= 8; $i ++){
-				$this->imprimir_celda($i , $this->celday );
-				
-				if( $i+1 <= 8 )
-				echo " , ";
-				
-			}
-		
-			echo "\n\nVerticales: \n";
-			for($i = 1; $i <= 8; $i ++){
-				$this->imprimir_celda( $this->celdax , $i);
-				
-				if( $i+1 <= 8 )
-				echo " , ";			
-			}
+		$movs = [];
 			
 		
-				echo "\n\nDiagonales_1: \n";
-				$auxx = $this->celdax;
-				$auxy = $this->celday;
-				
-				while($auxx > 1 && $auxy > 1){
-					$auxx = $auxx - 1;
-					$auxy = $auxy - 1;
-				}
-				
-				while($auxx <= 8 && $auxy <= 8){
-					$this->imprimir_celda($auxx,$auxy);
-					if( $auxx+1 <= 8 && $auxy+1 <= 8 )
-					echo " , ";
-					
-					$auxx++;
-					$auxy++;
-				}
+		for($i = 1; $i <= 8; $i ++){
+			if($i != $this->celdax || $this->celday != $this->celday)
+			array_push( $movs ,  (chr($i+ 64) ) . $this->celday  );	
+		}
 		
-			echo "\n\nDiagonales_2: \n";
+
+		for($i = 1; $i <= 8; $i ++){
+			if($this->celdax != $this->celdax || $i != $this->celday)
+			array_push( $movs ,  (chr($this->celdax+ 64) ) . $i  );
+		}
 			
-			$auxx = $this->celdax;
-			$auxy = $this->celday;
-			
-			while($auxx < 8 && $auxy > 1){
-				$auxx = $auxx + 1;
-				$auxy = $auxy - 1;
+		
+
+
+		$auxx = $this->celdax;
+		$auxy = $this->celday;
+		
+		while($auxx > 1 && $auxy > 1){
+			$auxx = $auxx - 1;
+			$auxy = $auxy - 1;
+		}
+				
+			while($auxx <= 8 && $auxy <= 8){
+				if($auxx != $this->celdax || $auxy != $this->celday)
+				array_push( $movs ,  (chr($auxx+ 64) ) . $auxy  );
+				$auxx++;
+				$auxy++;
 			}
+		
+			
+		$auxx = $this->celdax;
+		$auxy = $this->celday;
+		
+		while($auxx < 8 && $auxy > 1){
+			$auxx = $auxx + 1;
+			$auxy = $auxy - 1;
+		}
 			
 			while($auxx >= 1 && $auxy <= 8){
-				$this->imprimir_celda($auxx,$auxy);
-				
-				if($auxx-1 >= 1 && $auxy-1 <= 8)
-				echo " , ";
-				
+				if($auxx != $this->celdax || $auxy != $this->celday)
+				array_push( $movs ,  (chr($auxx+ 64) ) . $auxy  );
 				$auxx--;
 				$auxy++;
 			}
-			echo "\n\n";
-		
-		
+
+		return $movs;
 		
 		
 	}
@@ -107,13 +95,6 @@ class Reina implements PiezaDeAjedrez{
 
 
 }
-const BLANCO = 200;
 
-$reina = new Reina("D3",BLANCO);
 
-$reina->movimientosPosibles();
-
-$reina->posicionarEn("H1");
-
-$reina->movimientosPosibles();
 
