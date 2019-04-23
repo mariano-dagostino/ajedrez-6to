@@ -1,5 +1,7 @@
 <?php
-require ('PiezaAjedrezInterface.php');
+
+namespace Ajedrez;
+
 class Peon implements PiezaDeAjedrez {
     protected $color;
     protected $columna;
