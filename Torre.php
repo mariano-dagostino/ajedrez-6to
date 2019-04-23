@@ -72,20 +72,23 @@ class Torre implements PiezaDeAjedrez{
         $cont = 0;
 
 		for($i = 0; $i < 8; $i++){
-                   $posibilidad = ($this->posicion->getColumna()) . $i;
-                   if($posibilidad != $this->posicion->getCoordenada()){
-            $posibilidades[$cont] =  ;
-            $cont++;
-                    }
+            $posibilidad = ($this->posicion->getColumna()) . $i;
+            
+            if($posibilidad != $this->posicion->getCoordenada()){
+            	$posibilidades[$cont] = $posibilidad;
+            	$cont++;
+            }
 
 		}
 
         for($p = "A"; $p <= "H"; $p++){
-$posibilidad = $p . ($this->posicion->getFila());
-                   if($posibilidad != $this->posicion->getCoordenada()){
-                $posibilidades[$cont] =  $posibilidad;
+			$posibilidad = $p . ($this->posicion->getFila());
+            
+            if($posibilidad != $this->posicion->getCoordenada()){
+            	$posibilidades[$cont] =  $posibilidad;
                 $cont++;
-        }
+        	}
+    	}
 
         return $posibilidades;
 	}

@@ -2,7 +2,7 @@
 
 require('Torre.php');
 
-$torre = new Torre("A7");
+$torre = new Torre("C5");
 
 print_r($torre->movimientosPosibles());
 
