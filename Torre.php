@@ -14,6 +14,15 @@ class Celda {
 	function setCelda($celda){
 		$this->columna = (string)$celda[0];
 		$this->fila = (int)$celda[1];
+
+		if($this->columna < "A" 
+			|| $this->columna > "H" 
+			|| $this->fila < 0 
+			|| $this->fila > 7 
+			|| strlen($celda) != 2) {
+
+			throw new Exception("Coordenada no valida", 1);
+		}
 	}
 
 	public function getFila(){
@@ -30,25 +39,21 @@ class Torre implements PiezaDeAjedrez{
 
 	private $posicion;
 
-	private $color;
-
-	function __construct($posicion, $color){
+	function __construct($posicion){
+		//El color no afecta el movimiento de la torre
+		// por eso no lo usamos
 		$this->posicion = new Celda($posicion);
-		$this->color = $color;
 	}
-
 
 	public function posicionarEn($celda){
-		if ($this->esPosible($celda)) {
+		if ($this->movimientoValido($celda)) {
 			$this->posicion->setCelda($celda);
-			echo "zafaste\n";
+			return TRUE;
 		}
-		else {
-			echo "your mom is gone\n";
-		}
+		return FALSE;
 	}
 
-	public function esPosible ($celda){
+	private function movimientoValido ($celda){
 		$posibles = $this->movimientosPosibles();
 		for ($i=0; $i < count($posibles) ; $i++) {
 			if($celda == $posibles[$i])
@@ -63,17 +68,12 @@ class Torre implements PiezaDeAjedrez{
         $cont = 0;
 
 		for($i = 0; $i < 8; $i++){
-
             $posibilidades[$cont] =  ($this->posicion->getColumna()) . $i;
-
             $cont++;
-
 		}
 
-        for($p = 0, $columna = "A"; $p < 8; $p++, $columna++){
-
-                $posibilidades[$cont] =  $columna . ($this->posicion->getFila());
-
+        for($p = "A"; $p <= "H"; $p++){
+                $posibilidades[$cont] =  $p . ($this->posicion->getFila());
                 $cont++;
         }
 
@@ -81,8 +81,3 @@ class Torre implements PiezaDeAjedrez{
 	}
 }
 
-$torre = new Torre("A0",0);
-
-echo '<pre>'; print_r($torre->movimientosPosibles()); echo '</pre>';
-
-$torre->posicionarEn("B5");
