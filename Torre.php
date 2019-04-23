@@ -25,6 +25,10 @@ class Celda {
 		}
 	}
 
+      	public function getCoordenada(){
+		return $this->columna . $this->fila;
+	}
+
 	public function getFila(){
 		return $this->fila;
 	}
@@ -68,16 +72,21 @@ class Torre implements PiezaDeAjedrez{
         $cont = 0;
 
 		for($i = 0; $i < 8; $i++){
-            $posibilidades[$cont] =  ($this->posicion->getColumna()) . $i;
+                   $posibilidad = ($this->posicion->getColumna()) . $i;
+                   if($posibilidad != $this->posicion->getCoordenada()){
+            $posibilidades[$cont] =  ;
             $cont++;
+                    }
+
 		}
 
         for($p = "A"; $p <= "H"; $p++){
-                $posibilidades[$cont] =  $p . ($this->posicion->getFila());
+$posibilidad = $p . ($this->posicion->getFila());
+                   if($posibilidad != $this->posicion->getCoordenada()){
+                $posibilidades[$cont] =  $posibilidad;
                 $cont++;
         }
 
         return $posibilidades;
 	}
 }
-
